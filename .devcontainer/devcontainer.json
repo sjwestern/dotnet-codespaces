@@ -30,7 +30,15 @@
                 "GitHub.vscode-github-actions",
                 "ms-dotnettools.vscode-dotnet-runtime",
                 "ms-dotnettools.csdevkit",
-                "ms-dotnetools.csharp"
+                "ms-dotnetools.csharp",
+                "Angular.ng-template",
+                "infinity1207.angular2-switcher",
+                "ms-azure-devops.azure-pipelines",
+                "EditorConfig.EditorConfig",
+                "dbaeumer.vscode-eslint",
+                "eamodio.gitlens",
+                "esbenp.prettier-vscode",
+                "ms-mssql.mssql"
             ]
         }
     },
