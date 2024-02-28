@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
-import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
+import { AdminLayoutComponent } from './admin/admin-layout/admin-layout.component';
 import { LayoutComponent } from './layout/layout.component';
 import { LoginPage } from './auth/login/login.page';
 import { authGuard } from './auth/auth.guard';
@@ -11,6 +11,7 @@ export const routes: Routes = [
     {
         path: '',
         canActivate: [authGuard],
+        canActivateChild: [authGuard],
         component: LayoutComponent,
         children: [
             { path: '', pathMatch: 'full', redirectTo: 'test' },
