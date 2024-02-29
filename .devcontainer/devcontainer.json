@@ -2,7 +2,7 @@
     "name": "C# (.NET), MS SQL and Angular",
     // "image": "mcr.microsoft.com/dotnet/sdk:8.0",
     "dockerComposeFile": "docker-compose.yml",
-    "service": "app",
+    "service": "devcontainer",
 	"workspaceFolder": "/workspace",
     "features": {
         "ghcr.io/devcontainers/features/docker-in-docker:2": {},
@@ -13,7 +13,8 @@
         "ghcr.io/devcontainers/features/dotnet:2": {},
         "ghcr.io/devcontainers/features/node:1": {},
         "ghcr.io/devcontainers-contrib/features/angular-cli:2": {},
-        "ghcr.io/devcontainers-contrib/features/jest:2": {}
+        "ghcr.io/devcontainers-contrib/features/jest:2": {},
+        "ghcr.io/jlaundry/devcontainer-features/mssql-odbc-driver:1": {}
     },
     "customizations": {
         "vscode": {
