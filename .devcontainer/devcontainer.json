@@ -33,7 +33,13 @@
                         "trustServerCertificate": true
 					}
 				],
-				"sqlDatabaseProjects.dotnetSDK Location": "/usr/bin/"
+				"sqlDatabaseProjects.dotnetSDK Location": "/usr/bin/",
+                "dotnetAcquisitionExtension.existingDotnetPath": [
+                    {
+                        "extensionId": "ms-dotnettools.csharp",
+                        "path": "/usr/share/dotnet/shared/Microsoft.NETCore.App"
+                    }
+                ]
 			},
             "extensions": [
                 "Angular.ng-template",
