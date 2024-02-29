@@ -59,7 +59,7 @@
         8081
     ],
     
-    "postCreateCommand": "bash ./.devcontainer/mssql/postCreateCommand.sh 'P@ssw0rd' './bin/Debug/' './.devcontainer/mssql/' && cd ./SampleApp && dotnet restore && cd ./frontend-apps && npm i",
+    "postCreateCommand": "bash ./.devcontainer/mssql/postCreateCommand.sh 'P@ssw0rd' './bin/Debug/' './.devcontainer/mssql/' && dotnet tool install --global dotnet-ef && cd ./SampleApp && dotnet restore && cd ./frontend-apps && npm i",
     "hostRequirements": {
         "memory": "8gb",
         "cpus": 4
