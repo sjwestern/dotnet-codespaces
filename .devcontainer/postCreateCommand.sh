@@ -6,7 +6,7 @@ sqlpath=$2
 echo "SELECT * FROM SYS.DATABASES" | dd of=testsqlconnection.sql
 for i in {1..60};
 do
-    sqlcmd -S localhost -U sa -P $SApassword -d master -i testsqlconnection.sql > /dev/null
+    sqlcmd -S localhost -U sa -P $SApassword -d master -i testsqlconnection.sql > /dev/null || true
     if [ $? -eq 0 ]
     then
         echo "SQL server ready"
@@ -16,7 +16,7 @@ do
         sleep 1
     fi
 done
-rm testsqlconnection.sql
+rm testsqlconnection.sql || true
 
 for f in $sqlpath/*
 do
@@ -34,7 +34,7 @@ then
         if [ $f == $sqlpath/*".sql" ]
         then
             echo "Executing $f"
-            sqlcmd -S localhost -U sa -P $SApassword -d master -i $f
+            sqlcmd -S localhost -U sa -P $SApassword -d master -i $f || true
         fi
     done
 fi
@@ -45,13 +45,13 @@ then
     echo "/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P $SApassword -d master -Q \"ALTER LOGIN sa WITH PASSWORD = '<enterStrongPasswordHere>' \""
 fi
 
-npm i -g azure-functions-core-tools@4 --unsafe-perm true
+npm i -g azure-functions-core-tools@4 --unsafe-perm true || true
+dotnet tool install --global dotnet-ef || true
 
-dotnet tool install --global dotnet-ef
 
-cd ./SampleApp && dotnet restore
+B64_PAT=$(printf ":%s" "$AZ_DEVOPS_PAT" | base64) || true
+git -c http.extraHeader="Authorization: Basic ${B64_PAT}" clone https://dev.azure.com/sjwestern/yourProjectName/_git/sjwestern || true
 
-cd ./frontend-apps && npm i
+cd ./SampleApp && dotnet restore || true
 
-B64_PAT=$(printf ":%s" "$AZ_DEVOPS_PAT" | base64)
-git -c http.extraHeader="Authorization: Basic ${B64_PAT}" clone https://dev.azure.com/sjwestern/yourProjectName/_git/sjwestern 
+cd ./frontend-apps && npm i || true

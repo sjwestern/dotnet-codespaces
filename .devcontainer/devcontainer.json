@@ -3,7 +3,6 @@
     // "image": "mcr.microsoft.com/dotnet/sdk:8.0",
     "dockerComposeFile": "docker-compose.yml",
     "service": "devcontainer",
-	"workspaceFolder": "/workspace/dotnet-codespaces",
     "features": {
         "ghcr.io/devcontainers/features/docker-in-docker:2": {},
         "ghcr.io/devcontainers/features/github-cli:1": {},
@@ -26,7 +25,7 @@
 						"database": "",
 						"authenticationType": "SqlLogin",
 						"user": "sa",
-						"password": "P@ssw0rd",
+						"password": "${containerEnv:MSSQL_SA_PASSWORD}",
 						"emptyPasswordInput": false,
 						"savePassword": true,
 						"profileName": "mssql-container",
@@ -65,7 +64,7 @@
         8081
     ],
     
-    "postCreateCommand": "bash ./.devcontainer/postCreateCommand.sh 'P@ssw0rd' './.devcontainer/mssql/'",
+    "postCreateCommand": "bash ./.devcontainer/postCreateCommand.sh '${MSSQL_SA_PASSWORD}' './.devcontainer/mssql/'",
     "hostRequirements": {
         "memory": "8gb",
         "cpus": 4
@@ -92,7 +91,6 @@
         "DOTNET_MULTILEVEL_LOOKUP": "0",
         "TARGET": "net8.0",
         "PATH": "${containerEnv:PATH}:/opt/mssql-tools/bin",
-        "MSSQL_SA_PASSWORD": "P@ssw0rd"
     },
     "portsAttributes": {
         "8080": {
