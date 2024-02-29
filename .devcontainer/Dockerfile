@@ -6,12 +6,12 @@ FROM mcr.microsoft.com/dotnet/sdk:${VARIANT}
 # ENV PATH $PATH:/home/vscode/.dotnet:/home/vscode/.dotnet/tools
 
 # [Choice] Node.js version: none, lts/*, 18, 16, 14
-ARG NODE_VERSION="none"
-RUN if [ "${NODE_VERSION}" == "latest" ]; then \
-    su vscode -c "umask 0002 && . /usr/local/share/nvm/nvm.sh && nvm install node 2>&1"; \
-elif [ "${NODE_VERSION}" != "none" ]; then \
-    su vscode -c "umask 0002 && . /usr/local/share/nvm/nvm.sh && nvm install ${NODE_VERSION} 2>&1"; \
-fi
+# ARG NODE_VERSION="none"
+# RUN if [ "${NODE_VERSION}" == "latest" ]; then \
+#     su vscode -c "umask 0002 && . /usr/local/share/nvm/nvm.sh && nvm install node 2>&1"; \
+# elif [ "${NODE_VERSION}" != "none" ]; then \
+#     su vscode -c "umask 0002 && . /usr/local/share/nvm/nvm.sh && nvm install ${NODE_VERSION} 2>&1"; \
+# fi
 
 # Install SQL Tools: SQLPackage and sqlcmd
 COPY mssql/installSQLtools.sh installSQLtools.sh
