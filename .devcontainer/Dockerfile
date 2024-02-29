@@ -1,6 +1,6 @@
 # [Choice] .NET version: .NET: 6.0-jammy, 7.0-jammy, 8.0-jammy https://mcr.microsoft.com/en-us/product/dotnet/sdk/tags
 ARG VARIANT="8.0-jammy"
-FROM mcr.microsoft.com/devcontainers/dotnet:0-${VARIANT}
+FROM mcr.microsoft.com/dotnet/sdk:${VARIANT}
 
 # Add .NET global tools path
 # ENV PATH $PATH:/home/vscode/.dotnet:/home/vscode/.dotnet/tools
