@@ -50,7 +50,7 @@ dotnet tool install --global dotnet-ef || true
 
 
 B64_PAT=$(printf ":%s" "$AZ_DEVOPS_PAT" | base64) || true
-git -c http.extraHeader="Authorization: Basic ${B64_PAT}" clone https://dev.azure.com/sjwestern/yourProjectName/_git/sjwestern || true
+git -c http.extraHeader="Authorization: Basic ${B64_PAT}" clone https://sjwestern@dev.azure.com/sjwestern/sjwestern/_git/sjwestern || true
 
 cd ./SampleApp && dotnet restore || true
 
