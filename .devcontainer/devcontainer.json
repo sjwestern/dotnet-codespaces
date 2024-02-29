@@ -85,7 +85,8 @@
     "remoteEnv": {
         "DOTNET_MULTILEVEL_LOOKUP": "0",
         "TARGET": "net8.0",
-        "PATH": "${containerEnv:PATH}:/opt/mssql-tools/bin"
+        "PATH": "${containerEnv:PATH}:/opt/mssql-tools/bin",
+        "MSSQL_SA_PASSWORD": "P@ssw0rd"
     },
     "portsAttributes": {
         "8080": {
