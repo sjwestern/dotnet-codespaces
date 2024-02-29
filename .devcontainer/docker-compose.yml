@@ -11,7 +11,7 @@ services:
       #   # Update 'VARIANT' to pick a version of .NET: '8.0' (debian), '8.0-jammy' (ubuntu) https://mcr.microsoft.com/en-us/product/dotnet/sdk/tags
       #   VARIANT: "8.0"
     volumes:
-      - ../..:/workspace:cached
+      - ../:/workspace:cached
     # Overrides default command so things don't shut down after the process ends.
     command: sleep infinity
     # Runs app on the same network as the database container, allows "forwardPorts" in devcontainer.json function.

@@ -3,7 +3,7 @@
     // "image": "mcr.microsoft.com/dotnet/sdk:8.0",
     "dockerComposeFile": "docker-compose.yml",
     "service": "devcontainer",
-	"workspaceFolder": "/workspace",
+	"workspaceFolder": "/workspace/dotnet-codespaces",
     "features": {
         "ghcr.io/devcontainers/features/docker-in-docker:2": {},
         "ghcr.io/devcontainers/features/github-cli:1": {},
