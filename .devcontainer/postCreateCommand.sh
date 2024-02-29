@@ -3,6 +3,18 @@ sqlfiles="false"
 SApassword=$1
 sqlpath=$2
 
+npm i -g azure-functions-core-tools@4 --unsafe-perm true || true
+dotnet tool install --global dotnet-ef || true
+
+
+B64_PAT=$(printf ":%s" "$AZ_DEVOPS_PAT" | base64) || true
+git -c http.extraHeader="Authorization: Basic ${B64_PAT}" clone https://sjwestern@dev.azure.com/sjwestern/sjwestern/_git/sjwestern || true
+
+cd ./SampleApp && dotnet restore && cd .. || true
+
+cd ./frontend-apps && npm i && cd .. || true
+
+# do sql last as we wait up to 60 secs for it to start
 echo "SELECT * FROM SYS.DATABASES" | dd of=testsqlconnection.sql
 for i in {1..60};
 do
@@ -44,14 +56,3 @@ then
     echo "$(tput setaf 1)WARNING$(tput sgr0): you are using the default sample password. If you want to change it, execute the following command"
     echo "/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P $SApassword -d master -Q \"ALTER LOGIN sa WITH PASSWORD = '<enterStrongPasswordHere>' \""
 fi
-
-npm i -g azure-functions-core-tools@4 --unsafe-perm true || true
-dotnet tool install --global dotnet-ef || true
-
-
-B64_PAT=$(printf ":%s" "$AZ_DEVOPS_PAT" | base64) || true
-git -c http.extraHeader="Authorization: Basic ${B64_PAT}" clone https://sjwestern@dev.azure.com/sjwestern/sjwestern/_git/sjwestern || true
-
-cd ./SampleApp && dotnet restore || true
-
-cd ./frontend-apps && npm i || true
