@@ -1,44 +1,56 @@
 {
-    "name": ".NET in Codespaces",
-    "image": "mcr.microsoft.com/dotnet/sdk:8.0",
+    "name": "C# (.NET), MS SQL and Angular",
+    // "image": "mcr.microsoft.com/dotnet/sdk:8.0",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "devcontainer",
+	"workspaceFolder": "/workspace",
     "features": {
         "ghcr.io/devcontainers/features/docker-in-docker:2": {},
-        "ghcr.io/devcontainers/features/github-cli:1": {
-            "version": "latest"
-        },
-        "ghcr.io/devcontainers/features/powershell:1": {
-            "version": "latest"
-        },
-        "ghcr.io/azure/azure-dev/azd:0": {
-            "version": "latest"
-        },
+        "ghcr.io/devcontainers/features/github-cli:1": {},
+        "ghcr.io/devcontainers/features/powershell:1": {},
+        "ghcr.io/azure/azure-dev/azd:0": {},
         "ghcr.io/devcontainers/features/common-utils:2": {},
-        "ghcr.io/devcontainers/features/dotnet:2": {
-            "version": "none",
-            "dotnetRuntimeVersions": "7.0",
-            "aspNetCoreRuntimeVersions": "7.0"
-        },
-        "ghcr.io/devcontainers-contrib/features/angular-cli:2": {
-            "version": "latest"
-        }
+        "ghcr.io/devcontainers/features/dotnet:2": {},
+        "ghcr.io/devcontainers/features/node:1": {},
+        "ghcr.io/devcontainers-contrib/features/angular-cli:2": {},
+        "ghcr.io/devcontainers-contrib/features/jest:2": {},
+        "ghcr.io/jlaundry/devcontainer-features/mssql-odbc-driver:1": {}
     },
     "customizations": {
         "vscode": {
+            // Set *default* container specific settings.json values on container create.
+			"settings": { 
+				"mssql.connections": [
+					{
+						"server": "localhost,1433",
+						"database": "",
+						"authenticationType": "SqlLogin",
+						"user": "sa",
+						"password": "P@ssw0rd",
+						"emptyPasswordInput": false,
+						"savePassword": true,
+						"profileName": "mssql-container",
+                        "trustServerCertificate": true
+					}
+				],
+				"sqlDatabaseProjects.dotnetSDK Location": "/usr/bin/"
+			},
             "extensions": [
-                "ms-vscode.vscode-node-azure-pack",
-                "GitHub.copilot",
+                "Angular.ng-template",
+                "dbaeumer.vscode-eslint",
+                "eamodio.gitlens",
+                "EditorConfig.EditorConfig",
+                "esbenp.prettier-vscode",
                 "GitHub.vscode-github-actions",
+                "infinity1207.angular2-switcher",
+                "mhutchie.git-graph",
+                "ms-azure-devops.azure-pipelines",
                 "ms-dotnettools.vscode-dotnet-runtime",
                 "ms-dotnettools.csdevkit",
                 "ms-dotnetools.csharp",
-                "Angular.ng-template",
-                "infinity1207.angular2-switcher",
-                "ms-azure-devops.azure-pipelines",
-                "EditorConfig.EditorConfig",
-                "dbaeumer.vscode-eslint",
-                "eamodio.gitlens",
-                "esbenp.prettier-vscode",
-                "ms-mssql.mssql"
+                "ms-mssql.mssql",
+                "ms-vscode.vscode-node-azure-pack",
+                "Postman.postman-for-vscode"
             ]
         }
     },
@@ -46,14 +58,35 @@
         8080,
         8081
     ],
-    "postCreateCommand": "cd ./SampleApp && dotnet restore",
+    
+    "postCreateCommand": "bash ./.devcontainer/mssql/postCreateCommand.sh 'P@ssw0rd' './bin/Debug/' './.devcontainer/mssql/' && dotnet tool install --global dotnet-ef && cd ./SampleApp && dotnet restore && cd ./frontend-apps && npm i",
     "hostRequirements": {
         "memory": "8gb",
         "cpus": 4
     },
+    // [Optional] To reuse of your local HTTPS dev cert:
+	//
+	// 1. Export it locally using this command:
+	//    * Windows PowerShell:
+	//        dotnet dev-certs https --trust; dotnet dev-certs https -ep "$env:USERPROFILE/.aspnet/https/aspnetapp.pfx" -p "SecurePwdGoesHere"
+	//    * macOS/Linux terminal:
+	//        dotnet dev-certs https --trust; dotnet dev-certs https -ep "${HOME}/.aspnet/https/aspnetapp.pfx" -p "SecurePwdGoesHere"
+	// 
+	// 2. Uncomment these 'remoteEnv' lines:
+	//    "remoteEnv": {
+	// 	      "ASPNETCORE_Kestrel__Certificates__Default__Password": "SecurePwdGoesHere",
+	//        "ASPNETCORE_Kestrel__Certificates__Default__Path": "/home/vscode/.aspnet/https/aspnetapp.pfx",
+	//    },
+	//
+	// 3. Next, copy your certificate into the container:
+	//      1. Start the container
+	//      2. Drag ~/.aspnet/https/aspnetapp.pfx into the root of the file explorer
+	//      3. Open a terminal in VS Code and run "mkdir -p /home/vscode/.aspnet/https && mv aspnetapp.pfx /home/vscode/.aspnet/https"
     "remoteEnv": {
         "DOTNET_MULTILEVEL_LOOKUP": "0",
-        "TARGET": "net8.0"
+        "TARGET": "net8.0",
+        "PATH": "${containerEnv:PATH}:/opt/mssql-tools/bin",
+        "MSSQL_SA_PASSWORD": "P@ssw0rd"
     },
     "portsAttributes": {
         "8080": {

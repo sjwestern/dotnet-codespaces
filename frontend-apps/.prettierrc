@@ -1,0 +1,13 @@
+{
+    "singleAttributePerLine": false,
+    "bracketSameLine": true,
+    "arrowParens": "avoid",
+    "overrides": [
+        {
+            "files": "*.pretierrc",
+            "options": {
+                "parser": "json"
+            }
+        }
+    ]
+}

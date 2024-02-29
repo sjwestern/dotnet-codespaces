@@ -1,0 +1,7 @@
+# ignore generated package lock
+**/package-lock.json
+# ignore typescript to use vscode formatter
+**/*.ts
+# ignore minified json
+**/assets/**/*.json
+**/lotties/**/*.json

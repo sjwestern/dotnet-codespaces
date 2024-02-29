@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  devcontainer:
+    # use either an 'image' 
+    image: "mcr.microsoft.com/dotnet/sdk:8.0"
+    # or  'build' your image with dockerfile
+    # build:
+      # context: .
+      # dockerfile: Dockerfile
+      # args:
+      #   # Update 'VARIANT' to pick a version of .NET: '8.0' (debian), '8.0-jammy' (ubuntu) https://mcr.microsoft.com/en-us/product/dotnet/sdk/tags
+      #   VARIANT: "8.0"
+    volumes:
+      - ../..:/workspace:cached
+    # Overrides default command so things don't shut down after the process ends.
+    command: sleep infinity
+    # Runs app on the same network as the database container, allows "forwardPorts" in devcontainer.json function.
+    network_mode: service:db
+    # Use "forwardPorts" in **devcontainer.json** to forward an app port locally. 
+    # (Adding the "ports" property to this file will not forward from a Codespace.)
+
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    restart: unless-stopped
+    environment:
+      SA_PASSWORD: P@ssw0rd
+      MSSQL_SA_PASSWORD: P@ssw0rd
+      ACCEPT_EULA: Y
+    # Add "forwardPorts": ["1433"] to **devcontainer.json** to forward MSSQL locally.
+    # (Adding the "ports" property to this file will not forward from a Codespace.)

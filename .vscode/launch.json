@@ -9,7 +9,9 @@
 			},
             "configurations": [
                 "Back End",
-                "Front End"
+                "Front End - Angular Web",
+                "Front End - Angular Two",
+                "Launch Web (edge)",
             ]
         }
     ],
@@ -55,6 +57,31 @@
             "sourceFileMap": {
                 "/Views": "${workspaceFolder}/Views"
             }
+        },
+        {
+            "name": "Front End - Angular Web",
+            "request": "launch",
+            "runtimeArgs": ["run-script", "start:web"],
+            "runtimeExecutable": "npm",
+            "skipFiles": ["<node_internals>/**","**/node_modules/**"],
+            "type": "node",
+            "cwd": "${workspaceFolder}/frontend-apps/"
+        },
+        {
+            "name": "Front End - Angular Two",
+            "request": "launch",
+            "runtimeArgs": ["run-script", "start:two"],
+            "runtimeExecutable": "npm",
+            "skipFiles": ["<node_internals>/**","**/node_modules/**"],
+            "type": "node",
+            "cwd": "${workspaceFolder}/frontend-apps/"
+        },
+        {
+            "name": "Launch Web (edge)",
+            "type": "msedge",
+            "request": "launch",
+            "url": "http://localhost:4200/",
+            "webRoot": "${workspaceFolder}/frontend-apps/projects/web"
         },
         {
             "name": ".NET Core Attach",
