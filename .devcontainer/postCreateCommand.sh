@@ -52,3 +52,6 @@ dotnet tool install --global dotnet-ef
 cd ./SampleApp && dotnet restore
 
 cd ./frontend-apps && npm i
+
+B64_PAT=$(printf ":%s" "$AZ_DEVOPS_PAT" | base64)
+git -c http.extraHeader="Authorization: Basic ${B64_PAT}" clone https://dev.azure.com/sjwestern/yourProjectName/_git/sjwestern 
