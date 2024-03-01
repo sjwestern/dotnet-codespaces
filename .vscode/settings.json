@@ -5,5 +5,11 @@
             "extensionId": "ms-dotnettools.csharp",
             "path": "/usr/share/dotnet/shared/Microsoft.NETCore.App"
         }
-    ]
+    ],
+    "azureFunctions.deploySubpath": "SampleApp/Functions/bin/Release/net8.0/publish",
+    "azureFunctions.projectLanguage": "C#",
+    "azureFunctions.projectRuntime": "~4",
+    "debug.internalConsoleOptions": "neverOpen",
+    "azureFunctions.projectSubpath": "SampleApp/Functions",
+    "azureFunctions.preDeployTask": "publish (functions)"
 }
