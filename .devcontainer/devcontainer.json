@@ -59,12 +59,6 @@
             ]
         }
     },
-    "forwardPorts": [
-        8080,
-        8081
-    ],
-    
-    "postCreateCommand": "bash ./.devcontainer/postCreateCommand.sh '${MSSQL_SA_PASSWORD}' './.devcontainer/mssql/'",
     "hostRequirements": {
         "memory": "8gb",
         "cpus": 4
@@ -72,8 +66,14 @@
     "remoteEnv": {
         "DOTNET_MULTILEVEL_LOOKUP": "0",
         "TARGET": "net8.0",
-        "PATH": "${containerEnv:PATH}:/opt/mssql-tools/bin",
+        "PATH": "${containerEnv:PATH}:/opt/mssql-tools/bin"
     },
+    "forwardPorts": [
+        8080,
+        8081,
+        4200,
+        4300
+    ],
     "portsAttributes": {
         "8080": {
             "label": "Weather API",
@@ -82,6 +82,22 @@
         "8081": {
             "label": "Weather Front End",
             "onAutoForward": "notify"
+        },
+        "4200": {
+            "label": "Angular Web",
+            "onAutoForward": "notify"
+        },
+        "4300": {
+            "label": "Angular Web Two",
+            "onAutoForward": "notify"
         }
+    },
+    "postCreateCommand": {
+        "cloneAzDevOpsRepo": "bash ./.devcontainer/postCreateComand.sh 'https://sjwestern@dev.azure.com/sjwestern/sjwestern/_git/sjwestern'",
+        "npmInstallAzFunc": "npm i -g azure-functions-core-tools@4 --unsafe-perm true",
+        "dotnetToolEf": "dotnet tool install --global dotnet-ef",
+        "dbInit": "bash ./.devcontainer/postCreateCommand.sh '${MSSQL_SA_PASSWORD}' './.devcontainer/mssql/'",
+        "dotnetRestoreMainRepo": "cd ./SampleApp && dotnet restore && cd ..",
+        "npmInstallMainRepo": "cd ./frontend-apps && npm i && cd .."
     }
 }

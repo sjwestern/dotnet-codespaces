@@ -3,18 +3,7 @@ sqlfiles="false"
 SApassword=$1
 sqlpath=$2
 
-npm i -g azure-functions-core-tools@4 --unsafe-perm true || true
-dotnet tool install --global dotnet-ef || true
-
-
-B64_PAT=$(printf ":%s" "$AZ_DEVOPS_PAT" | base64) || true
-git -c http.extraHeader="Authorization: Basic ${B64_PAT}" clone https://sjwestern@dev.azure.com/sjwestern/sjwestern/_git/sjwestern || true
-
-cd ./SampleApp && dotnet restore && cd .. || true
-
-cd ./frontend-apps && npm i && cd .. || true
-
-# do sql last as we wait up to 60 secs for it to start
+# wait up to 60 secs for sql container to start
 echo "SELECT * FROM SYS.DATABASES" | dd of=testsqlconnection.sql
 for i in {1..60};
 do
