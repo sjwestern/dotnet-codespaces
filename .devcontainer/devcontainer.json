@@ -15,15 +15,23 @@
         "ghcr.io/devcontainers-contrib/features/jest:2": {},
         "ghcr.io/jlaundry/devcontainer-features/mssql-odbc-driver:1": {},
         "ghcr.io/microsoft/codespace-features/external-repository:3": {
-            "cloneUrl": "https://sjwestern@dev.azure.com/sjwestern/sjwestern/_git/sjwestern,https://sjwestern@dev.azure.com/sjwestern/sjwestern/_git/test-repo",
+            "cloneUrl": "https://dev.azure.com/sjwestern/sjwestern/_git/sjwestern,https://dev.azure.com/sjwestern/sjwestern/_git/test-repo",
             "userSecret": "AZ_DEVOPS_PAT",
             "folder": "/workspace/ado-repos"
         }
     },
     "initializeCommand": "mkdir -p ${localWorkspaceFolder}/../ado-repos",
+    // onCreateCommand only has access to repo or org secrets, which we don't want to use for this public repo
+    // recommendation is a read only token
+    // see https://github.com/microsoft/codespace-features/tree/main/src/external-repository
+    // and https://containers.dev/implementors/json_reference/
+    // "onCreateCommand": {
+    //     "externalGit": "external-git clone"
+        // "cloneAzDevOpsRepo": "bash ./.devcontainer/postCreateComand_cloneAzDevOpsRepo.sh 'https://sjwestern@dev.azure.com/sjwestern/sjwestern/_git/sjwestern' 'sjwestern' '${containerEnv:AZ_DEVOPS_PAT}'"
+    // },
     "postCreateCommand": {
-        "externalClone": "external-git clone",
-        // "cloneAzDevOpsRepo": "bash ./.devcontainer/postCreateComand_cloneAzDevOpsRepo.sh 'https://sjwestern@dev.azure.com/sjwestern/sjwestern/_git/sjwestern' 'sjwestern' '${containerEnv:AZ_DEVOPS_PAT}'",
+        "externalGit": "external-git clone",
+        // "cloneAzDevOpsRepo": "bash ./.devcontainer/postCreateComand_cloneAzDevOpsRepo.sh 'https://sjwestern@dev.azure.com/sjwestern/sjwestern/_git/sjwestern' 'sjwestern' '${containerEnv:AZ_DEVOPS_PAT}'"
         "npmInstallAzFunc": "npm i -g azure-functions-core-tools@4 --unsafe-perm true",
         "dotnetToolEf": "dotnet tool install --global dotnet-ef",
         "dbInit": "bash ./.devcontainer/postCreateCommand.sh '${containerEnv:MSSQL_SA_PASSWORD}' './.devcontainer/mssql/'",
