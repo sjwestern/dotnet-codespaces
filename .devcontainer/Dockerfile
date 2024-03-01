@@ -1,5 +1,5 @@
 # [Choice] .NET version: .NET: 6.0-jammy, 7.0-jammy, 8.0-jammy https://mcr.microsoft.com/en-us/product/dotnet/sdk/tags
-ARG VARIANT="8.0-jammy"
+ARG VARIANT="8.0"
 FROM mcr.microsoft.com/dotnet/sdk:${VARIANT}
 
 # Add .NET global tools path
@@ -12,11 +12,6 @@ FROM mcr.microsoft.com/dotnet/sdk:${VARIANT}
 # elif [ "${NODE_VERSION}" != "none" ]; then \
 #     su vscode -c "umask 0002 && . /usr/local/share/nvm/nvm.sh && nvm install ${NODE_VERSION} 2>&1"; \
 # fi
-
-# Install SQL Tools: SQLPackage and sqlcmd
-COPY mssql/installSQLtools.sh installSQLtools.sh
-RUN bash ./installSQLtools.sh \
-     && apt-get clean -y && rm -rf /var/lib/apt/lists/* /tmp/library-scripts
 
 # [Optional] Uncomment this section to install additional OS packages.
 # RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
