@@ -13,8 +13,24 @@
         "ghcr.io/devcontainers/features/node:1": {},
         "ghcr.io/devcontainers-contrib/features/angular-cli:2": {},
         "ghcr.io/devcontainers-contrib/features/jest:2": {},
-        "ghcr.io/jlaundry/devcontainer-features/mssql-odbc-driver:1": {}
+        "ghcr.io/jlaundry/devcontainer-features/mssql-odbc-driver:1": {},
+        "ghcr.io/microsoft/codespace-features/external-repository:3": {
+            "cloneUrl": "https://sjwestern@dev.azure.com/sjwestern/sjwestern/_git/sjwestern,https://sjwestern@dev.azure.com/sjwestern/sjwestern/_git/test-repo",
+            "userSecret": "AZ_DEVOPS_PAT",
+            "folder": "/workspace/ado-repos"
+        }
     },
+    "initializeCommand": "mkdir -p ${localWorkspaceFolder}/../ado-repos",
+    "postCreateCommand": {
+        "externalClone": "external-git clone",
+        // "cloneAzDevOpsRepo": "bash ./.devcontainer/postCreateComand_cloneAzDevOpsRepo.sh 'https://sjwestern@dev.azure.com/sjwestern/sjwestern/_git/sjwestern' 'sjwestern' '${containerEnv:AZ_DEVOPS_PAT}'",
+        "npmInstallAzFunc": "npm i -g azure-functions-core-tools@4 --unsafe-perm true",
+        "dotnetToolEf": "dotnet tool install --global dotnet-ef",
+        "dbInit": "bash ./.devcontainer/postCreateCommand.sh '${containerEnv:MSSQL_SA_PASSWORD}' './.devcontainer/mssql/'",
+        "dotnetRestoreMainRepo": "cd ./SampleApp && dotnet restore && cd ..",
+        "npmInstallMainRepo": "cd ./frontend-apps && npm i && cd .."
+    },
+    "postStartCommand": "external-git config",
     "customizations": {
         "vscode": {
             // Set *default* container specific settings.json values on container create.
@@ -91,13 +107,5 @@
             "label": "Angular Web Two",
             "onAutoForward": "notify"
         }
-    },
-    "postCreateCommand": {
-        "cloneAzDevOpsRepo": "bash ./.devcontainer/postCreateComand.sh 'https://sjwestern@dev.azure.com/sjwestern/sjwestern/_git/sjwestern'",
-        "npmInstallAzFunc": "npm i -g azure-functions-core-tools@4 --unsafe-perm true",
-        "dotnetToolEf": "dotnet tool install --global dotnet-ef",
-        "dbInit": "bash ./.devcontainer/postCreateCommand.sh '${MSSQL_SA_PASSWORD}' './.devcontainer/mssql/'",
-        "dotnetRestoreMainRepo": "cd ./SampleApp && dotnet restore && cd ..",
-        "npmInstallMainRepo": "cd ./frontend-apps && npm i && cd .."
     }
 }
