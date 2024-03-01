@@ -18,10 +18,9 @@
             "cloneUrl": "https://dev.azure.com/sjwestern/sjwestern/_git/sjwestern,https://dev.azure.com/sjwestern/sjwestern/_git/test-repo",
             "username": "AZ_DEVOPS_USERNAME",
             "userSecret": "AZ_DEVOPS_PAT",
-            "folder": "/workspace/external-repos/"
+            "folder": "/workspaces/dotnet-codespaces/external-repos/"
         }
     },
-    "workspaceFolder": "/",
     "initializeCommand": {
         "createFolder": "mkdir -p ${localWorkspaceFolder}/../external-repos",
         "createFolderTwo": "mkdir -p ${localWorkspaceFolder}/external-repos"
