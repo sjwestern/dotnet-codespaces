@@ -1,42 +1,42 @@
 {
-  "name": "frontend-apps",
-  "version": "0.0.0",
-  "scripts": {
-    "ng": "ng",
-    "start": "ng serve --project web --port 4200 --host 0.0.0.0",
-    "start:web": "ng serve --project web --port 4200 --host 0.0.0.0",
-    "start:two": "ng serve --project two --port 4300 --host 0.0.0.0",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test"
-  },
-  "private": true,
-  "dependencies": {
-    "@angular/animations": "^21.2.13",
-    "@angular/common": "^21.2.13",
-    "@angular/compiler": "^21.2.13",
-    "@angular/core": "^21.2.13",
-    "@angular/forms": "^21.2.13",
-    "@angular/platform-browser": "^21.2.13",
-    "@angular/platform-browser-dynamic": "^21.2.13",
-    "@angular/router": "^21.2.13",
-    "rxjs": "~7.8.0",
-    "tslib": "^2.3.0",
-    "zone.js": "~0.15.1"
-  },
-  "devDependencies": {
-    "@angular/build": "^21.2.11",
-    "@angular/cli": "^21.2.11",
-    "@angular/compiler-cli": "^21.2.13",
-    "@types/jasmine": "~5.1.0",
-    "jasmine-core": "~5.1.0",
-    "karma": "~6.4.0",
-    "karma-chrome-launcher": "~3.2.0",
-    "karma-coverage": "~2.2.0",
-    "karma-jasmine": "~5.1.0",
-    "karma-jasmine-html-reporter": "~2.1.0",
-    "prettier": "^3.2.5",
-    "prettier-plugin-organize-imports": "^4.3.0",
-    "typescript": "~5.9.3"
-  }
+    "name": "frontend-apps",
+    "version": "0.0.0",
+    "scripts": {
+        "ng": "ng",
+        "start": "ng serve --project web --port 4200 --host 0.0.0.0",
+        "start:web": "ng serve --project web --port 4200 --host 0.0.0.0",
+        "start:two": "ng serve --project two --port 4300 --host 0.0.0.0",
+        "build": "ng build",
+        "watch": "ng build --watch --configuration development",
+        "test": "ng test"
+    },
+    "private": true,
+    "dependencies": {
+        "@angular/animations": "^21.2.13",
+        "@angular/common": "^21.2.13",
+        "@angular/compiler": "^21.2.13",
+        "@angular/core": "^21.2.13",
+        "@angular/forms": "^21.2.13",
+        "@angular/platform-browser": "^21.2.13",
+        "@angular/platform-browser-dynamic": "^21.2.13",
+        "@angular/router": "^21.2.13",
+        "rxjs": "~7.8.0",
+        "tslib": "^2.3.0",
+        "zone.js": "~0.15.1"
+    },
+    "devDependencies": {
+        "@angular/build": "^21.2.11",
+        "@angular/cli": "^21.2.11",
+        "@angular/compiler-cli": "^21.2.13",
+        "@types/jasmine": "~5.1.0",
+        "jasmine-core": "~5.1.0",
+        "karma": "~6.4.0",
+        "karma-chrome-launcher": "~3.2.0",
+        "karma-coverage": "~2.2.0",
+        "karma-jasmine": "~5.1.0",
+        "karma-jasmine-html-reporter": "~2.1.0",
+        "prettier": "^3.2.5",
+        "prettier-plugin-organize-imports": "^4.3.0",
+        "typescript": "~5.9.3"
+    }
 }

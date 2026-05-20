@@ -5,8 +5,6 @@ import { RouterLink } from '@angular/router';
     selector: 'app-nav',
     imports: [RouterLink],
     templateUrl: './nav.component.html',
-    styleUrl: './nav.component.scss'
+    styleUrl: './nav.component.scss',
 })
-export class NavComponent {
-
-}
+export class NavComponent {}

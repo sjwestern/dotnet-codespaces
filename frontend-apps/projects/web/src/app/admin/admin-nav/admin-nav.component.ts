@@ -5,8 +5,6 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
     selector: 'app-admin-nav',
     imports: [RouterLink, RouterLinkActive],
     templateUrl: './admin-nav.component.html',
-    styleUrl: './admin-nav.component.scss'
+    styleUrl: './admin-nav.component.scss',
 })
-export class AdminNavComponent {
-
-}
+export class AdminNavComponent {}

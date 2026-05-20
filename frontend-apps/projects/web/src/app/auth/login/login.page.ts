@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+    FormBuilder,
+    FormGroup,
+    ReactiveFormsModule,
+    Validators,
+} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs';
 import { AuthService } from '../auth.service';
@@ -8,21 +13,24 @@ import { AuthService } from '../auth.service';
     selector: 'app-login',
     imports: [ReactiveFormsModule],
     templateUrl: './login.page.html',
-    styleUrl: './login.page.scss'
+    styleUrl: './login.page.scss',
 })
 export class LoginPage implements OnInit {
     loading = false;
     submitted = false;
     form!: FormGroup;
 
-    constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private authService: AuthService, private router: Router) {
-
-    }
+    constructor(
+        private formBuilder: FormBuilder,
+        private route: ActivatedRoute,
+        private authService: AuthService,
+        private router: Router,
+    ) {}
     ngOnInit() {
         this.form = this.formBuilder.group({
             username: ['', Validators.required],
             password: ['', Validators.required],
-            admin: ['true']
+            admin: ['true'],
         });
     }
 
@@ -32,14 +40,15 @@ export class LoginPage implements OnInit {
             return;
         }
         this.loading = true;
-        this.authService.login(this.form.controls['admin'].value)
+        this.authService
+            .login(this.form.controls['admin'].value)
             .pipe(first())
             .subscribe({
                 next: () => {
-                    const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+                    const returnUrl =
+                        this.route.snapshot.queryParams['returnUrl'] || '/';
                     this.router.navigateByUrl(returnUrl);
                 },
-
             });
     }
 }

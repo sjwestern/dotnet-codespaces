@@ -4,8 +4,6 @@ import { Component } from '@angular/core';
     selector: 'app-admin-two',
     imports: [],
     templateUrl: './admin-two.page.html',
-    styleUrl: './admin-two.page.scss'
+    styleUrl: './admin-two.page.scss',
 })
-export default class AdminTwoPage {
-
-}
+export default class AdminTwoPage {}

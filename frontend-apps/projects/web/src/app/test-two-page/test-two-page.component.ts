@@ -4,8 +4,6 @@ import { Component } from '@angular/core';
     selector: 'app-test-two-page',
     imports: [],
     templateUrl: './test-two-page.component.html',
-    styleUrl: './test-two-page.component.scss'
+    styleUrl: './test-two-page.component.scss',
 })
-export default class TestTwoPageComponent {
-
-}
+export default class TestTwoPageComponent {}

@@ -1,18 +1,22 @@
 import { Component } from '@angular/core';
-import { NavComponent } from "../nav/nav.component";
 import { Router, RouterOutlet } from '@angular/router';
+import { NavComponent } from '../nav/nav.component';
 
 @Component({
     selector: 'app-layout',
     templateUrl: './layout.component.html',
     styleUrl: './layout.component.scss',
-    imports: [RouterOutlet, NavComponent]
+    imports: [RouterOutlet, NavComponent],
 })
 export class LayoutComponent {
-
-    constructor(private router: Router){}
+    constructor(private router: Router) {}
 
     get isAdminRoute(): boolean {
-        return this.router.isActive(this.router.createUrlTree(['/admin']), {paths: 'subset', queryParams: 'ignored', fragment: 'ignored', matrixParams: 'ignored'});
+        return this.router.isActive(this.router.createUrlTree(['/admin']), {
+            paths: 'subset',
+            queryParams: 'ignored',
+            fragment: 'ignored',
+            matrixParams: 'ignored',
+        });
     }
 }
