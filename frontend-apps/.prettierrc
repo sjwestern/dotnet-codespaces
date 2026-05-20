@@ -1,7 +1,6 @@
 {
     "singleAttributePerLine": false,
     "bracketSameLine": true,
-    "arrowParens": "avoid",
     "overrides": [
         {
             "files": "*.pretierrc",
@@ -9,5 +8,6 @@
                 "parser": "json"
             }
         }
-    ]
+    ],
+    "plugins": ["prettier-plugin-organize-imports"]
 }
