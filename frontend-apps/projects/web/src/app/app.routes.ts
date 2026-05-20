@@ -17,12 +17,17 @@ export const routes: Routes = [
             { path: '', pathMatch: 'full', redirectTo: 'test' },
             {
                 path: 'test',
-                loadComponent: () => import('./test-page/test-page.component'),
+                loadComponent: () =>
+                    import('./test-page/test-page.component').then(
+                        (m) => m.TestPageComponent,
+                    ),
             },
             {
                 path: 'test-two',
                 loadComponent: () =>
-                    import('./test-two-page/test-two-page.component'),
+                    import('./test-two-page/test-two-page.component').then(
+                        (m) => m.TestTwoPageComponent,
+                    ),
             },
             {
                 path: 'admin',

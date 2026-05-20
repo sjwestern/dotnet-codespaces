@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 
 import { AdminNavComponent } from './admin-nav.component';
 
@@ -9,6 +10,7 @@ describe('AdminNavComponent', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [AdminNavComponent],
+            providers: [provideRouter([])],
         }).compileComponents();
 
         fixture = TestBed.createComponent(AdminNavComponent);

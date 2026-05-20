@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
     styleUrl: './test-page.component.scss',
     imports: [],
 })
-export default class TestPageComponent {
+export class TestPageComponent {
     someProp: string = '';
 }

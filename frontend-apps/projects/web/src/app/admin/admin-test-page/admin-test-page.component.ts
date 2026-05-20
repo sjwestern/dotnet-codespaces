@@ -6,4 +6,4 @@ import { Component } from '@angular/core';
     templateUrl: './admin-test-page.component.html',
     styleUrl: './admin-test-page.component.scss',
 })
-export default class AdminTestPageComponent {}
+export class AdminTestPageComponent {}

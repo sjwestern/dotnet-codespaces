@@ -79,17 +79,20 @@
                     }
                 },
                 "test": {
-                    "builder": "@angular/build:karma",
+                    "builder": "@angular/build:unit-test",
                     "options": {
-                        "polyfills": ["zone.js", "zone.js/testing"],
-                        "tsConfig": "projects/web/tsconfig.spec.json",
-                        "inlineStyleLanguage": "scss",
-                        "assets": [
-                            "projects/web/src/favicon.ico",
-                            "projects/web/src/assets"
-                        ],
-                        "styles": ["projects/web/src/styles.scss"],
-                        "scripts": []
+                        "tsConfig": "projects/web/tsconfig.spec.json"
+                    }
+                },
+                "e2e": {
+                    "builder": "playwright-ng-schematics:playwright",
+                    "options": {
+                        "devServerTarget": "web:serve"
+                    },
+                    "configurations": {
+                        "production": {
+                            "devServerTarget": "web:serve:production"
+                        }
                     }
                 }
             }
@@ -164,24 +167,31 @@
                     }
                 },
                 "test": {
-                    "builder": "@angular/build:karma",
+                    "builder": "@angular/build:unit-test",
                     "options": {
-                        "polyfills": ["zone.js", "zone.js/testing"],
-                        "tsConfig": "projects/two/tsconfig.spec.json",
-                        "inlineStyleLanguage": "scss",
-                        "assets": [
-                            "projects/two/src/favicon.ico",
-                            "projects/two/src/assets"
-                        ],
-                        "styles": ["projects/two/src/styles.scss"],
-                        "scripts": []
+                        "tsConfig": "projects/two/tsconfig.spec.json"
+                    }
+                },
+                "e2e": {
+                    "builder": "playwright-ng-schematics:playwright",
+                    "options": {
+                        "devServerTarget": "two:serve"
+                    },
+                    "configurations": {
+                        "production": {
+                            "devServerTarget": "two:serve:production"
+                        }
                     }
                 }
             }
         }
     },
     "cli": {
-        "analytics": false
+        "analytics": false,
+        "schematicCollections": [
+            "@schematics/angular",
+            "playwright-ng-schematics"
+        ]
     },
     "schematics": {
         "@schematics/angular:component": {

@@ -6,4 +6,4 @@ import { Component } from '@angular/core';
     templateUrl: './test-two-page.component.html',
     styleUrl: './test-two-page.component.scss',
 })
-export default class TestTwoPageComponent {}
+export class TestTwoPageComponent {}
